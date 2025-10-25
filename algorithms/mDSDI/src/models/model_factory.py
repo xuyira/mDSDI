@@ -2,7 +2,7 @@ from algorithms.mDSDI.src.models.mnistnet import MNIST_CNN, Color_MNIST_CNN
 from algorithms.mDSDI.src.models.resnet import ResNet
 from algorithms.mDSDI.src.models.eeg_models import EEG_CNN, EEG_ResNet
 from algorithms.mDSDI.src.models.eeg_models_advanced import EEG_CNN_Optimized, EEG_CNN_Attention
-from algorithms.mDSDI.src.models.eeg_conformer import EEG_Conformer
+from algorithms.mDSDI.src.models.eeg_conformer import EEG_Conformer, EEG_Conformer_Optimized
 
 
 nets_map = {
@@ -15,6 +15,7 @@ nets_map = {
     "eeg_cnn_optimized": EEG_CNN_Optimized,
     "eeg_cnn_attention": EEG_CNN_Attention,
     "eeg_conformer": EEG_Conformer,
+    "eeg_conformer_optimized": EEG_Conformer_Optimized,
 }
 
 

@@ -191,3 +191,59 @@ class EEG_Conformer(nn.Module):
         features = self.feature_head(encoded_patches)
         
         return features
+
+
+class EEG_Conformer_Optimized(nn.Module):
+    """优化版EEG Conformer - 添加降维层减少参数量"""
+    
+    def __init__(self, input_channels=22, emb_size=40, depth=6, feature_dim=512):
+        super(EEG_Conformer_Optimized, self).__init__()
+        self.n_outputs = feature_dim
+        
+        # Conformer组件
+        self.patch_embedding = PatchEmbedding(emb_size)
+        self.transformer_encoder = TransformerEncoder(depth, emb_size)
+        
+        # 原始特征头
+        self.feature_head = nn.Sequential(
+            Reduce('b n e -> b e', reduction='mean'),
+            nn.LayerNorm(emb_size),
+            nn.Linear(emb_size, 2440)  # 保持原始输出
+        )
+        
+        # 降维层
+        self.dimension_reducer = nn.Sequential(
+            nn.Linear(2440, 1024),
+            nn.ELU(),
+            nn.Dropout(0.5),
+            nn.Linear(1024, feature_dim),
+            nn.ELU(),
+            nn.Dropout(0.3)
+        )
+        
+    def forward(self, x):
+        """
+        前向传播
+        
+        输入: [batch_size, channels, height, width] = [batch, 22, 64, 64]
+        输出: [batch_size, feature_dim] = [batch, 512]
+        """
+        # 1. 图像转时间序列
+        time_series = img_to_ts(x)
+        
+        # 2. 添加通道维度
+        time_series = time_series.permute(0, 2, 1).unsqueeze(1)
+        
+        # 3. Patch Embedding
+        patches = self.patch_embedding(time_series)
+        
+        # 4. Transformer编码
+        encoded_patches = self.transformer_encoder(patches)
+        
+        # 5. 原始特征提取
+        raw_features = self.feature_head(encoded_patches)
+        
+        # 6. 降维
+        features = self.dimension_reducer(raw_features)
+        
+        return features
