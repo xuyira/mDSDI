@@ -8,3 +8,4 @@ data/
 DomainBed/train_output/*
 
 *.Identifier
+*.tar.gz
