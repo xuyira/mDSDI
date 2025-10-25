@@ -1,5 +1,6 @@
 from algorithms.mDSDI.src.models.mnistnet import MNIST_CNN, Color_MNIST_CNN
 from algorithms.mDSDI.src.models.resnet import ResNet
+from algorithms.mDSDI.src.models.eeg_models import EEG_CNN, EEG_ResNet
 
 
 nets_map = {
@@ -7,6 +8,8 @@ nets_map = {
     "cmnistnet": Color_MNIST_CNN, 
     "resnet50": ResNet,
     "resnet50_bci2a": lambda: ResNet(input_channels=22),
+    "eeg_cnn": EEG_CNN,
+    "eeg_resnet": EEG_ResNet,
 }
 
 
