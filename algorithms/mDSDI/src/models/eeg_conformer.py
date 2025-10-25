@@ -153,7 +153,7 @@ class TransformerEncoder(nn.Sequential):
 class EEG_Conformer(nn.Module):
     
     def __init__(self, input_channels=22, emb_size=40, depth=6):
-        super(EEG_Conformer_Simple, self).__init__()
+        super(EEG_Conformer, self).__init__()
         # 使用原始Conformer的输出维度
         self.n_outputs = 2440  # 原始Conformer的输出维度
         
