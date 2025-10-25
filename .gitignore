@@ -1,0 +1,10 @@
+__pycache__/
+pretrained_models/
+data/
+*.log
+*.pt
+*.0
+*.pkl
+DomainBed/train_output/*
+
+*.Identifier
