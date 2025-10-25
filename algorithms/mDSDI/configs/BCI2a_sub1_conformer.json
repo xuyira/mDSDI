@@ -1,0 +1,27 @@
+{
+    "exp_name": "BCI2a_sub1_conformer",
+    "algorithm": "mDSDI",
+    "model": "eeg_conformer",
+    "feature_dim": 2440,
+    "dataset": "BCI2a",
+    "seed_value": 1,
+    "val_size": 0.2,
+    "src_data_path": "data/BCI2a/Raw images/",
+    "src_train_meta_filenames": [
+        "data/BCI2a/Train val splits/sub2.txt",
+        "data/BCI2a/Train val splits/sub3.txt",
+        "data/BCI2a/Train val splits/sub4.txt",
+        "data/BCI2a/Train val splits/sub5.txt",
+        "data/BCI2a/Train val splits/sub6.txt",
+        "data/BCI2a/Train val splits/sub7.txt",
+        "data/BCI2a/Train val splits/sub8.txt",
+        "data/BCI2a/Train val splits/sub9.txt"
+    ],
+    "target_test_meta_filenames": ["data/BCI2a/Train val splits/sub1.txt"],
+    "n_classes": 4,
+    "n_domain_classes": 8,
+    "iterations": 3000,
+    "learning_rate": 0.0001,
+    "batch_size": 16,
+    "step_eval": 100
+}

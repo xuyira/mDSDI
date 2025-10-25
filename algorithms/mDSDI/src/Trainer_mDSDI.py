@@ -43,7 +43,15 @@ class Domain_Discriminator(nn.Module):
 class Classifier(nn.Module):
     def __init__(self, feature_dim, classes):
         super(Classifier, self).__init__()
-        self.classifier = nn.Linear(int(feature_dim * 2), classes)
+        self.classifier = nn.Sequential(
+            nn.Linear(int(feature_dim * 2), 256),
+            nn.ELU(),
+            nn.Dropout(0.5),
+            nn.Linear(256, 32),
+            nn.ELU(),
+            nn.Dropout(0.3),
+            nn.Linear(32, classes)
+        )
 
     def forward(self, di_z, ds_z):
         z = torch.cat((di_z, ds_z), dim=1)
