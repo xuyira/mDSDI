@@ -1,7 +1,7 @@
 {
     "exp_name": "BCI2a_sub1_conformer_optimized",
     "algorithm": "mDSDI",
-    "model": "eeg_conformer",
+    "model": "eeg_conformer_optimized",
     "feature_dim": 512,
     "dataset": "BCI2a",
     "seed_value": 1,
