@@ -20,7 +20,7 @@
     "target_test_meta_filenames": ["data/BCI2a/Train val splits/sub1.txt"],
     "n_classes": 4,
     "n_domain_classes": 8,
-    "iterations": 3000,
+    "iterations": 4000,
     "learning_rate": 0.0005,
     "batch_size": 32,
     "step_eval": 100
